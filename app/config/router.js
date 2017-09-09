@@ -1,10 +1,10 @@
 import React from 'react';
-import {StackNavigator} from 'react-navigation';
+import {DrawerNavigator, StackNavigator} from 'react-navigation';
 
 import Homepage from '../components/Homepage/Homepage';
 import Profile from '../components/Profile/Profile';
 
-const Tabs = StackNavigator({
+const Tabs = DrawerNavigator({
   Homepage: {
     screen: Homepage,
   },

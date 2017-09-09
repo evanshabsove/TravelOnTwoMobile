@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Button, Alert } from 'react-native';
-import { FormLabel, FormInput } from 'react-native-elements'
+import { AppRegistry, Text, View, Alert } from 'react-native';
+import { FormLabel, FormInput, Button } from 'react-native-elements'
 
 export default class login extends Component {
+
+  handleButtonPress() {
+    console.log(this);
+  }
 
   render() {
     const {navigate} = this.props.navigation;
@@ -12,6 +16,11 @@ export default class login extends Component {
         <FormInput/>
         <FormLabel>Password</FormLabel>
         <FormInput secureTextEntry={true} />
+        <Button
+          raised
+          icon={{name: 'check'}}
+          title='SUBMIT'
+          onPress={this.handleButtonPress} />
       </View>
     );
   }

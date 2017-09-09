@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, Button, Alert } from 'react-native';
-import { List, ListItem } from 'react-native-elements'
 
 export default class Homepage extends Component {
 

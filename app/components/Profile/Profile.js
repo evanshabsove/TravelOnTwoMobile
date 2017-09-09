@@ -8,8 +8,12 @@ export default class Profile extends Component {
     return (
       <View>
         <Text>
-          Hello Worlds
+          Profile
         </Text>
+        <Button
+          onPress={() => navigate('DrawerOpen')}
+          title="View Profile"
+        />
       </View>
     );
   }

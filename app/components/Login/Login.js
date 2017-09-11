@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, Alert } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements'
+import api from '../../utilities/api'
 
 export default class login extends Component {
 
   handleButtonPress() {
-    console.log(this);
+    api.login().then((res) => {
+      console.log(res);
+    })
   }
 
   render() {

@@ -11,8 +11,6 @@ export default class login extends Component {
   }
 
   handleButtonPress(email, password) {
-    console.log(email);
-    console.log(password);
     params = {
       email: email,
       password: password

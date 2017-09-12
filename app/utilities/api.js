@@ -1,4 +1,14 @@
+import { AsyncStorage } from 'react-native'
+
 const URL = "http://50a12bab.ngrok.io/api/v1/"
+
+// async saveItem(item, selectedValue) {
+//   try {
+//     await AsyncStorage.setItem(item, selectedValue);
+//   } catch (error) {
+//     console.error('AsyncStorage error: ' + error.message);
+//   }
+// }
 
 var api = {
   login(params){
@@ -15,7 +25,7 @@ var api = {
           password: params.password
         }
       })
-    }).then((response) => response.json()).then((responseData) => console.log("Response Body -> " + JSON.stringify(responseData))).catch(function(error) {
+    }).then((response) => response.json()).then((responseData) => console.log(responseData)).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }

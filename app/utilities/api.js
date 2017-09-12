@@ -1,9 +1,8 @@
 const URL = "http://50a12bab.ngrok.io/api/v1/"
 
 var api = {
-  login(){
+  login(params){
     var url = URL + "users/sign_in"
-    console.log(url);
     fetch(url, {
       method: 'POST',
       headers: {
@@ -12,8 +11,8 @@ var api = {
       },
       body: JSON.stringify({
         user_login: {
-          login: "evan@co",
-          password: "password"
+          login: params.email,
+          password: params.password
         }
       })
     }).then((response) => response.json()).then((responseData) => console.log("Response Body -> " + JSON.stringify(responseData))).catch(function(error) {

@@ -5,8 +5,19 @@ import api from '../../utilities/api'
 
 export default class login extends Component {
 
-  handleButtonPress() {
-    api.login()
+  constructor(props) {
+    super(props);
+    this.state = { email: "test", password: "test" }
+  }
+
+  handleButtonPress(email, password) {
+    console.log(email);
+    console.log(password);
+    params = {
+      email: email,
+      password: password
+    }
+    api.login(params)
   }
 
   render() {
@@ -14,14 +25,14 @@ export default class login extends Component {
     return (
       <View>
         <FormLabel>Email</FormLabel>
-        <FormInput/>
+        <FormInput onChangeText={(email) => this.setState({email})}/>
         <FormLabel>Password</FormLabel>
-        <FormInput secureTextEntry={true} />
+        <FormInput secureTextEntry={true} onChangeText={(password) => this.setState({password})}/>
         <Button
           raised
           icon={{name: 'check'}}
           title='SUBMIT'
-          onPress={this.handleButtonPress} />
+          onPress={this.handleButtonPress(this.state.email, this.state.password)} />
       </View>
     );
   }

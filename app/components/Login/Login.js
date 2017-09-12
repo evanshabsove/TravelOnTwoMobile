@@ -6,9 +6,7 @@ import api from '../../utilities/api'
 export default class login extends Component {
 
   handleButtonPress() {
-    api.login().then((res) => {
-      console.log(res);
-    })
+    api.login()
   }
 
   render() {

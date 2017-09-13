@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 
-const URL = "http://50a12bab.ngrok.io/api/v1/"
+const URL = "http://119cb52b.ngrok.io/api/v1/"
 
 // async saveItem(item, selectedValue) {
 //   try {
@@ -13,7 +14,7 @@ const URL = "http://50a12bab.ngrok.io/api/v1/"
 var api = {
   login(params){
     var url = URL + "users/sign_in"
-    fetch(url, {
+    return fetch(url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -25,7 +26,14 @@ var api = {
           password: params.password
         }
       })
-    }).then((response) => response.json()).then((responseData) => console.log(responseData)).catch(function(error) {
+    }).then((response) => response.json()).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+  },
+
+  profile(params) {
+    var url = URL + "users/" + params.user_id
+    return fetch(url).then((res) => res.json()).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }

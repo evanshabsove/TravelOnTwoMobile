@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Alert } from 'react-native';
+import { AppRegistry, Text, View, Alert, AsyncStorage } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements'
 import api from '../../utilities/api'
 
-export default class login extends Component {
+export default class Login extends Component {
 
   constructor(props) {
     super(props);
     this.state = { email: "test", password: "test" }
   }
 
-  handleButtonPress(email, password) {
+  handleButtonPress() {
     params = {
-      email: email,
-      password: password
+      email: this.state.email,
+      password: this.state.password
     }
-    api.login(params)
+    api.login(params).then(async (responseData) => {
+      if (responseData.success === true) {
+        try {
+          await AsyncStorage.setItem('user_id', responseData.user_id.toString());
+        } catch (error) {
+          console.log(error);
+        }
+        this.props.navigation.navigate('Profile', { user_id: responseData.user_id.toString() })
+      } else {
+        console.log(responseData);
+        Alert("Username or Password is incorrect")
+      }
+    })
   }
 
   render() {
-    const {navigate} = this.props.navigation;
     return (
       <View>
         <FormLabel>Email</FormLabel>
@@ -30,7 +41,7 @@ export default class login extends Component {
           raised
           icon={{name: 'check'}}
           title='SUBMIT'
-          onPress={this.handleButtonPress(this.state.email, this.state.password)} />
+          onPress={() => this.handleButtonPress()} />
       </View>
     );
   }

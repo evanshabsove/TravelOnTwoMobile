@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Button, Alert, AsyncStorage } from 'react-native';
+import { AppRegistry, Text, View, Alert, AsyncStorage, ScrollView } from 'react-native';
+import { Avatar, Button, Card } from 'react-native-elements'
 import api from '../../utilities/api'
 
 export default class Profile extends Component {
@@ -16,7 +17,7 @@ export default class Profile extends Component {
         api.profile(this.state.user_id).then((responseData) => {
           console.log(responseData);
           this.setState({
-            user_data: responseData,
+            userData: responseData,
             isLoading: false
           })
         })
@@ -38,14 +39,46 @@ export default class Profile extends Component {
       return <View><Text>Loading...</Text></View>;
     }
     return (
-      <View>
-        <Text>
-          Profile
-        </Text>
-        <Button
-          onPress={() => navigate('DrawerOpen')}
-          title="View Profile"
-        />
+      <View style={{flex: 1}}>
+        <ScrollView>
+          <Avatar
+            xlarge
+            source={{uri: "http://ce56aea8.ngrok.io" + this.state.userData.avatar.thumb.url}}
+            onPress={() => console.log("Works!")}
+            activeOpacity={0.7}
+          />
+          <Text>
+            {this.state.userData.name}
+          </Text>
+          <Text>
+            {this.state.userData.description}
+          </Text>
+          <Text>
+            {this.state.userData.city}, {this.state.userData.province}, {this.state.userData.country}
+          </Text>
+          {
+            this.state.userData.trips.map((trip) => {
+              return(
+                <Card
+                  title={trip.trip_name}
+                  image={{uri: "http://ce56aea8.ngrok.io" + trip.photo.cover.url}}>
+                  <Text>
+                    {trip.description}
+                  </Text>
+                  <Button
+                    backgroundColor='#03A9F4'
+                    fontFamily='Lato'
+                    buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                    title='VIEW NOW' />
+                </Card>
+              )
+            })
+          }
+          <Button
+            onPress={() => navigate('DrawerOpen')}
+            title="START A NEW TRIP"
+          />
+        </ScrollView>
       </View>
     );
   }

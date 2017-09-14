@@ -14,7 +14,7 @@ export default class Homepage extends Component {
         </Text>
         <Button
           onPress={() => navigate('DrawerOpen')}
-          title="View Profile"
+          title="View Side Bar"
         />
       </View>
     );

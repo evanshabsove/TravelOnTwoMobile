@@ -6,35 +6,37 @@ export default class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { user_data: [] }
+    this.state = { userData: [], user_id: "", isLoading: true }
   }
 
   async _getSessionData() {
-    console.log("asyn method");
     try {
-      const value = await AsyncStorage.getItem('user_id');
-      if (value !== null){
-        // We have data!!
-        return value
-      }
+      const value = await AsyncStorage.getItem('user_id').then((value) => {
+        this.setState({"user_id": value.toString()})
+        api.profile(this.state.user_id).then((responseData) => {
+          console.log(responseData);
+          this.setState({
+            user_data: responseData,
+            isLoading: false
+          })
+        })
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
   componentWillMount(){
-    var params = this.props.navigation.state.param
+    // var params = this.props.navigation.state.param
     this._getSessionData()
-    api.profile(params).then((responseData) => {
-      console.log(responseData);
-      this.setState({
-        user_data: responseData
-      })
-    })
   }
 
   render() {
     const {navigate} = this.props.navigation;
+
+    if (this.state.isLoading) {
+      return <View><Text>Loading...</Text></View>;
+    }
     return (
       <View>
         <Text>

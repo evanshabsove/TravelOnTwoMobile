@@ -18,11 +18,12 @@ export default class Login extends Component {
     api.login(params).then(async (responseData) => {
       if (responseData.success === true) {
         try {
-          await AsyncStorage.setItem('user_id', responseData.user_id.toString());
+          await AsyncStorage.setItem('user_id', responseData.user_id.toString()).then(() => {
+            this.props.navigation.navigate('Profile')
+          });
         } catch (error) {
           console.log(error);
         }
-        this.props.navigation.navigate('Profile', { user_id: responseData.user_id.toString() })
       } else {
         console.log(responseData);
         Alert("Username or Password is incorrect")

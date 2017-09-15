@@ -4,6 +4,7 @@ import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import Homepage from '../components/Homepage/Homepage';
 import Profile from '../components/Profile/Profile';
 import Login from '../components/Login/Login';
+import TripStack from './TripStack'
 
 const Tabs = DrawerNavigator({
   Homepage: {
@@ -13,8 +14,9 @@ const Tabs = DrawerNavigator({
     screen: Login,
   },
   Profile: {
-    screen: Profile
+    screen: TripStack
   },
 })
+
 
 export default Tabs;

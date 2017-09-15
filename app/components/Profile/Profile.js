@@ -34,6 +34,7 @@ export default class Profile extends Component {
 
   render() {
     const {navigate} = this.props.navigation;
+    const URL = "http://8f3ad62b.ngrok.io"
 
     if (this.state.isLoading) {
       return <View><Text>Loading...</Text></View>;
@@ -43,7 +44,7 @@ export default class Profile extends Component {
         <ScrollView>
           <Avatar
             xlarge
-            source={{uri: "http://ce56aea8.ngrok.io" + this.state.userData.avatar.thumb.url}}
+            source={{uri: URL + this.state.userData.avatar.thumb.url}}
             onPress={() => console.log("Works!")}
             activeOpacity={0.7}
           />
@@ -60,14 +61,17 @@ export default class Profile extends Component {
             this.state.userData.trips.map((trip) => {
               return(
                 <Card
+                  key={trip.id}
                   title={trip.trip_name}
-                  image={{uri: "http://ce56aea8.ngrok.io" + trip.photo.cover.url}}>
+                  image={{uri: URL + trip.photo.cover.url}}>
                   <Text>
                     {trip.description}
                   </Text>
                   <Button
                     backgroundColor='#03A9F4'
                     fontFamily='Lato'
+                    onPress = {() => navigate('Trip')}
+                    key={trip.id}
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                     title='VIEW NOW' />
                 </Card>

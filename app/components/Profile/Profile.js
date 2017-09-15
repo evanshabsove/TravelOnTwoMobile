@@ -70,7 +70,7 @@ export default class Profile extends Component {
                   <Button
                     backgroundColor='#03A9F4'
                     fontFamily='Lato'
-                    onPress = {() => navigate('Trip')}
+                    onPress = {() => navigate('Trip', {trip_id: trip.id})}
                     key={trip.id}
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                     title='VIEW NOW' />

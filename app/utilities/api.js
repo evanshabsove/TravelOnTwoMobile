@@ -37,6 +37,14 @@ var api = {
     return fetch(url).then((res) => res.json()).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
+  },
+
+  tripShow(trip_id) {
+    var url = URL + "trips/" + trip_id
+    console.log(url);
+    return fetch(url).then((res) => res.json()).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
   }
 };
 

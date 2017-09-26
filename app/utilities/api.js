@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
-const URL = "http://3fd8dee7.ngrok.io/api/v1/"
+const URL = "http://eb243314.ngrok.io/api/v1/"
 
 // async saveItem(item, selectedValue) {
 //   try {

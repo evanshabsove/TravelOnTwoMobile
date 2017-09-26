@@ -50,7 +50,7 @@ export default class Trip extends Component {
   render() {
 
     const {navigate} = this.props.navigation;
-    const URL = "http://3fd8dee7.ngrok.io";
+    const URL = "http://eb243314.ngrok.io";
     const trip = this.state.tripData;
 
     if (this.state.isLoading) {

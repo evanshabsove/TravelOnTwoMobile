@@ -34,7 +34,7 @@ export default class Profile extends Component {
 
   render() {
     const {navigate} = this.props.navigation;
-    const URL = "http://8f3ad62b.ngrok.io"
+    const URL = "http://3fd8dee7.ngrok.io"
 
     if (this.state.isLoading) {
       return <View><Text>Loading...</Text></View>;

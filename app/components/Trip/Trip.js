@@ -14,6 +14,7 @@ export default class Trip extends Component {
 
   componentWillMount() {
     let trip_id = (this.props.navigation.state.params.trip_id).toString()
+    this.setState({ trip_id: trip_id })
     api.tripShow(trip_id).then((responseData) => {
       console.log(responseData);
       this.setState({
@@ -24,7 +25,7 @@ export default class Trip extends Component {
   }
 
   handlePostGroupButtonPress (post_group) {
-    var post_group_id = post_group.toString()
+    var post_group_id = post_group
     var posts = []
     this.state.tripData.posts.map((post) => {
       if (post.post_group_id === post_group_id) {
@@ -49,7 +50,7 @@ export default class Trip extends Component {
   render() {
 
     const {navigate} = this.props.navigation;
-    const URL = "http://8f3ad62b.ngrok.io";
+    const URL = "http://3fd8dee7.ngrok.io";
     const trip = this.state.tripData;
 
     if (this.state.isLoading) {
@@ -107,7 +108,7 @@ export default class Trip extends Component {
             onPress={() => navigate('DrawerOpen')}
             title="View Side Bar"
           />
-          <TripModal postData={this.state.postData} modalVisible={this.state.modalVisible} handler = {this.handler}/>
+          <TripModal postData={this.state.postData} modalVisible={this.state.modalVisible} handler = {this.handler} navigate = {navigate} trip_id={this.state.trip_id}/>
         </ScrollView>
       </View>
     );

@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
-const URL = "http://8f3ad62b.ngrok.io/api/v1/"
+const URL = "http://3fd8dee7.ngrok.io/api/v1/"
 
 // async saveItem(item, selectedValue) {
 //   try {
@@ -41,6 +41,14 @@ var api = {
 
   tripShow(trip_id) {
     var url = URL + "trips/" + trip_id
+    console.log(url);
+    return fetch(url).then((res) => res.json()).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+  },
+
+  postShow(trip_id, post_id) {
+    var url = URL + "trips/" + trip_id + "/posts/" + post_id
     console.log(url);
     return fetch(url).then((res) => res.json()).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);

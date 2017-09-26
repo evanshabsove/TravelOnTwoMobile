@@ -10,7 +10,9 @@ const PostStack = StackNavigator({
   },
   Post: {
     screen: Post,
-  }
-})
+  },
+}, {
+  headerMode: 'none'
+});
 
 export default PostStack;

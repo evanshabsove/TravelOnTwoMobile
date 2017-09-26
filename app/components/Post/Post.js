@@ -27,8 +27,6 @@ export default class Post extends Component {
     const post = this.state.postData;
     const URL = "http://3fd8dee7.ngrok.io";
 
-    console.log(post.post_pictures[0].picture.url);
-
     if (this.state.isLoading) {
       return <View><Text>Loading...</Text></View>;
     }
@@ -51,6 +49,7 @@ export default class Post extends Component {
                 <Image
                   style={{width:100, height:100}}
                   source={{uri: URL + post_picture.picture.url}}
+                  key={post_picture.picture.id}
                 />
               )
             })

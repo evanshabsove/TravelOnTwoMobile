@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
-const URL = "http://eb243314.ngrok.io/api/v1/"
+const URL = "http://5ab7934a.ngrok.io/api/v1/"
 
 // async saveItem(item, selectedValue) {
 //   try {
@@ -12,6 +12,23 @@ const URL = "http://eb243314.ngrok.io/api/v1/"
 // }
 
 var api = {
+
+  conversationsShow(user_id) {
+    var url = URL + "conversations?user_id=" + user_id
+    console.log(url);
+    return fetch(url).then((res) => res.json()).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+  },
+
+  followedBlogsShow(user_id) {
+    var url = URL + "users/" + user_id + "/followed_blogs"
+    console.log(url);
+    return fetch(url).then((res) => res.json()).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+  },
+
   login(params){
     var url = URL + "users/sign_in"
     return fetch(url, {
@@ -31,6 +48,14 @@ var api = {
     });
   },
 
+  postShow(trip_id, post_id) {
+    var url = URL + "trips/" + trip_id + "/posts/" + post_id
+    console.log(url);
+    return fetch(url).then((res) => res.json()).catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+  },
+
   profile(user_id) {
     var url = URL + "users/" + user_id
     console.log(url);
@@ -39,16 +64,16 @@ var api = {
     });
   },
 
-  tripShow(trip_id) {
-    var url = URL + "trips/" + trip_id
+  search(q) {
+    var url = URL + "search?q=" + q
     console.log(url);
     return fetch(url).then((res) => res.json()).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   },
 
-  postShow(trip_id, post_id) {
-    var url = URL + "trips/" + trip_id + "/posts/" + post_id
+  tripShow(trip_id) {
+    var url = URL + "trips/" + trip_id
     console.log(url);
     return fetch(url).then((res) => res.json()).catch(function(error) {
       console.log('There has been a problem with your fetch operation: ' + error.message);

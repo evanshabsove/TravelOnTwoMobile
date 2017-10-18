@@ -25,7 +25,7 @@ export default class Post extends Component {
   render() {
 
     const post = this.state.postData;
-    const URL = "http://5ab7934a.ngrok.io";
+    const URL = "http://ca142157.ngrok.io";
 
     if (this.state.isLoading) {
       return <View><Text>Loading...</Text></View>;

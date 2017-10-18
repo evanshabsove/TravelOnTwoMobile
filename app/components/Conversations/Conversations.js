@@ -3,6 +3,7 @@ import { AppRegistry, Text, View, AsyncStorage, ScrollView } from 'react-native'
 import { Button, Card, Avatar } from 'react-native-elements'
 import Message from '../Message/Message'
 import api from '../../utilities/api'
+import Header from '../Header/Header'
 
 export default class Conversations extends Component {
 
@@ -56,7 +57,7 @@ export default class Conversations extends Component {
   render() {
 
     const {navigate} = this.props.navigation;
-    const URL = "http://5ab7934a.ngrok.io"
+    const URL = "http://ca142157.ngrok.io"
 
     if (this.state.isLoading) {
       return <View><Text>Loading...</Text></View>;
@@ -65,6 +66,7 @@ export default class Conversations extends Component {
     return (
       <View>
         <ScrollView>
+          <Header navigate = {navigate} />
           {
             this.state.conversationsData.map((conversation) => {
               if (this.state.user_id === conversation.sender_id) {
@@ -100,10 +102,6 @@ export default class Conversations extends Component {
               }
             })
           }
-          <Button
-            onPress={() => navigate('DrawerOpen')}
-            title="START A NEW TRIP"
-          />
           <Message messageData={this.state.messageData} modalVisible={this.state.modalVisible} sender = {this.state.sender} recipient = {this.state.recipient} isSender = {this.state.isSender} handler = {this.handler} navigate = {navigate}/>
         </ScrollView>
       </View>

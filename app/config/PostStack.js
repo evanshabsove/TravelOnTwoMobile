@@ -6,11 +6,11 @@ import Post from '../components/Post/Post';
 
 const PostStack = StackNavigator({
   Trip: {
-    screen: Trip,
+    screen: Trip
   },
   Post: {
     screen: Post,
-  },
+  }
 }, {
   headerMode: 'none'
 });

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, AsyncStorage, ScrollView } from 'react-native';
 import { Button, Card, Avatar } from 'react-native-elements'
 import api from '../../utilities/api'
+import Header from '../Header/Header'
 
 export default class FollowedBlogs extends Component {
 
@@ -35,7 +36,7 @@ export default class FollowedBlogs extends Component {
   render() {
 
     const {navigate} = this.props.navigation;
-    const URL = "http://5ab7934a.ngrok.io"
+    const URL = "http://ca142157.ngrok.io"
 
     if (this.state.isLoading) {
       return <View><Text>Loading...</Text></View>;
@@ -44,6 +45,7 @@ export default class FollowedBlogs extends Component {
     return (
       <View>
         <ScrollView>
+          <Header navigate = {navigate} />
           {
             this.state.followedBlogsData.map((followedBlog) => {
               return(
@@ -62,10 +64,6 @@ export default class FollowedBlogs extends Component {
               )
             })
           }
-          <Button
-            onPress={() => navigate('DrawerOpen')}
-            title="START A NEW TRIP"
-          />
         </ScrollView>
       </View>
     );

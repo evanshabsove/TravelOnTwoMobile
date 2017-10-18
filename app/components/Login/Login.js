@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, Alert, AsyncStorage } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements'
 import api from '../../utilities/api'
+import Header from '../Header/Header'
 
 export default class Login extends Component {
 
@@ -32,8 +33,12 @@ export default class Login extends Component {
   }
 
   render() {
+
+    const {navigate} = this.props.navigation;
+
     return (
       <View>
+        <Header navigate = {navigate} />
         <FormLabel>Email</FormLabel>
         <FormInput onChangeText={(email) => this.setState({email})}/>
         <FormLabel>Password</FormLabel>

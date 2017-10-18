@@ -11,6 +11,8 @@ const ConversationStack = StackNavigator({
   Message: {
     screen: Message,
   },
-});
+}, {
+  headerMode: 'none'}
+);
 
 export default ConversationStack;

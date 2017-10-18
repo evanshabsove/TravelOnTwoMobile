@@ -8,7 +8,7 @@ export default class Message extends Component {
     console.log(this.props);
     const {navigate} = this.props.navigate;
     const props = this.props
-    const URL = "http://5ab7934a.ngrok.io"
+    const URL = "http://ca142157.ngrok.io"
 
     return (
       <View>
